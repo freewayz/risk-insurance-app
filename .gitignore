@@ -1,5 +1,6 @@
-webapp/*.pyc
-webapp/*.swp
-webapp/__pycache__/
+/webapp/.vscode/
+/webapp/*.pyc
+/webapp/*.swp
+*/__pycache__/
 webapp/*.pyo
 webapp/node_modules/
