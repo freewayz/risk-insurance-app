@@ -1,0 +1,5 @@
+webapp/*.pyc
+webapp/*.swp
+webapp/__pycache__/
+webapp/*.pyo
+webapp/node_modules/
