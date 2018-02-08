@@ -33,12 +33,6 @@ class FormFieldAPI(viewsets.ModelViewSet):
     serializer_class = RiskFormFieldSerializer
     queryset = RiskFormField.objects.all()
 
-
-class FormFieldOptionAPI(viewsets.ModelViewSet):
-    serializer_class = RiskFormFieldOptionSerializer
-    queryset = RiskFormFieldOption.objects.all()
-
-
     @detail_route(methods=['get'])
     def form_options(self, request, pk):
         form_field = get_object_or_404(RiskFormField, pk=pk)
@@ -48,3 +42,7 @@ class FormFieldOptionAPI(viewsets.ModelViewSet):
             data=serialized_data.data, 
             status=HTTP_200_OK
         )
+
+class FormFieldOptionAPI(viewsets.ModelViewSet):
+    serializer_class = RiskFormFieldOptionSerializer
+    queryset = RiskFormFieldOption.objects.all()

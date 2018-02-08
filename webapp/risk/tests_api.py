@@ -4,7 +4,7 @@
 __autho__ = "peter"
 from rest_framework.test import APITestCase
 from .models import ( RiskType, RiskFormField, FIELD_TYPES)
-from .utils_test import mock_risk_type
+from .utils_test import mock_risk_type, mock_risk_form_field
 from model_mommy import mommy
 import json
 
@@ -68,5 +68,17 @@ class RiskTypeFormAPITestCase(APITestCase):
 
     
 class FormFieldTestCase(APITestCase):
+    data = {
+        'label': 'This is an option'
+    }
+    url = '/risk/form-fields-options/'
     def test_form_field_option_can_be_created(self):
-        
+        form_field = mock_risk_form_field()
+        self.data['form_field']  = form_field.pk
+
+        response = self.client.post(
+            path=self.url,
+            data=self.data
+        )
+        self.assertEqual(response.status_code, 201)
+        self.assertContains(response, 'This is an option', status_code=201)

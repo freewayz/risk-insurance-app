@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
 from .apis import  (
     RiskTypeAPI, 
-    FormFieldAPI
+    FormFieldAPI,
+    FormFieldOptionAPI
 )
 
 router = DefaultRouter()
@@ -15,5 +16,10 @@ router.register(
         viewset=FormFieldAPI, 
         base_name='form-fields'
     )
+router.register(
+    r'form-fields-options',
+    viewset=FormFieldOptionAPI,
+    base_name='form-fields-options'
+)
 
 urlpatterns = router.urls

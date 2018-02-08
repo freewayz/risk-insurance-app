@@ -22,15 +22,13 @@ class BaseModel(models.Model):
         abstract = True
 
 
-
-
 class RiskType(BaseModel):
     title = models.CharField(max_length=100, blank=False, unique=True)
     description = models.CharField(max_length=200, blank=False)
 
 
     class Meta:
-        db_table = 'risk'
+        db_table = 'risk_type'
         
 
 class RiskFormField(BaseModel):
