@@ -1,5 +1,0 @@
-{
-    "python.pythonPath": "~/Env/brit_core/bin",
-    "python.linting.lintOnSave": true,
-    "python.linting.enabled": false
-}

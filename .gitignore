@@ -4,3 +4,7 @@
 */__pycache__/
 webapp/*.pyo
 webapp/node_modules/
+
+client/node_modules/
+client/dist/
+.vscode/
