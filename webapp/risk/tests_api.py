@@ -58,7 +58,7 @@ class RiskTypeFormAPITestCase(APITestCase):
                 data=self.data
             )
     
-        path = '/risk/{}/form-fields/'.format(self.risktype.pk)
+        path = '/risk/types/{}/form_fields/'.format(self.risktype.pk)
         response = self.client.get(
             path=path
         )
