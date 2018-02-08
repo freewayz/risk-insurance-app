@@ -6,9 +6,6 @@
         "project_name": "webapp",
         "runtime": "python3.6",
         "s3_bucket": "zappa-1u0gp7l4o",
-        "vpc_config": {
-            "SecurityGroupIds": ["sg-bdff18d6"]
-        },
         "remote_env": "s3://britcore-peter/secret-config.json"
     }
 }
