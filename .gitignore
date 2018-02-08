@@ -8,3 +8,4 @@ webapp/node_modules/
 client/node_modules/
 client/dist/
 .vscode/
+client/secret-config.json
