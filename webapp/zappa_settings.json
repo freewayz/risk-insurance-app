@@ -1,6 +1,6 @@
 {
     "dev": {
-        "aws_region": null,
+        "aws_region": "us-east-1",
         "django_settings": "insurance.settings",
         "profile_name": "abole",
         "project_name": "webapp",
