@@ -3,7 +3,7 @@
 """
 __autho__ = "peter"
 from rest_framework.test import APITestCase
-from .models import RiskType
+from .models import ( RiskType, RiskFormField, FIELD_TYPES)
 from model_mommy import mommy
 import json
 
@@ -29,3 +29,20 @@ class RiskTypeAPITestCase(APITestCase):
 
 
 class RiskTypeFormAPITestCase(APITestCase):
+    url = "risk/types/fields"
+    data = {
+        'label': 'Housing Number',
+        'field_type': 'NUMBER',
+    }
+
+    def setUp(self):
+        # let mock a single risk type as our foreign key
+        self.risktype = mommy.make(RiskType)
+
+    def test_that_insurer_can_create_risktype_form_data(self):
+        self.data['risk_type'] = self.risktype.pk
+        response = self.client.post(
+            path=self.url,
+            data=self.data
+        )
+        self.assertEqual(response.status_code, 201)
