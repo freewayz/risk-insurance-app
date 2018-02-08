@@ -1,16 +1,16 @@
 <template>
-  <div class="hello">
-      Risk Items
+  <div>
+      <h1 class="text-center">Risk Types</h1>
       <div>
-        <router-link :to="{name: 'CreateRisk'}">Create Risk</router-link>
+        <router-link class="btn btn-primary btn-sm" :to="{name: 'CreateRisk'}">Create Risk</router-link>
       </div>
       <div class="risk-items" v-if="riskItems.length > 0">
-        <div v-for="(risk, index) in riskItems" :key="index">
-          <div> {{ risk.title }} </div>
-          <div> {{ risk.description }} </div>
-          <div>
-            <router-link :to="{name: 'RiskForm', params: {riskId: risk.id}}"> View Form </router-link>
-            <router-link :to="{name: 'RiskFormBuilder', params: {riskId: risk.id}}"> Build Form </router-link>
+        <div v-for="(risk, index) in riskItems" :key="index" class="row">
+          <div class="col-sm"> {{ risk.title }} </div>
+          <div class="col-sm"> {{ risk.description }} </div>
+          <div class="col-sm">
+            <router-link class="btn" :to="{name: 'RiskForm', params: {riskId: risk.id}}"> View Form </router-link>
+            <router-link class="btn" :to="{name: 'RiskFormBuilder', params: {riskId: risk.id}}"> Build Form </router-link>
           </div>
         </div>
       </div>

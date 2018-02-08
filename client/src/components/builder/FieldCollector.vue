@@ -1,13 +1,18 @@
 <template>
-  <div>
-      <label for="">Field Name</label>
-      <input type="text" v-model="model.label"/>
-      <select name="" id="">
+  <div class="form-inline">
+      <div class="form-group mr-2">
+        <input @keyup.enter="handleUpdateFormField" class="form-control" type="text" v-model="model.label"/>
+      </div>
+      <select @change="handleUpdateFormField" class="form-control" v-model="model.field_type">
         <option value="" disabled>Select Field</option>
-        <option v-for="(fieldType, index) in fieldDataTypes" :key="index" value="field">
+        <option v-for="(fieldType, index) in fieldDataTypes" :key="index" :value="fieldType">
             {{ fieldType }}
         </option>
       </select>
+
+      <div v-show="isOptions">
+
+      </div>
   </div>
 </template>
 
@@ -18,10 +23,23 @@ export default {
   props: ['field'],
   data () {
     return {
-      model: {},
+      model: {
+        field_type: '',
+      },
+      selectedFieldType: {},
       fieldDataTypes: ['TEXT', 'NUMBER', 'DATE', 'OPTIONS']
     }
   },
+
+  computed: {
+    isOptions() {
+      if (this.model.field_type === 'OPTIONS') {
+        return true
+      }
+      return false
+    }
+  },
+
   mounted () {
     this.model = JSON.parse(JSON.stringify(this.field))
   },

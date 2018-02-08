@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="form-group">
         <label for=""> {{ field.label }}</label>
         <div v-for="(op, index) in field.options" :key="index">
             <input type="radio" :name="field.label">

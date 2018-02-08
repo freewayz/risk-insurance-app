@@ -3,19 +3,18 @@
       <div>
           Create Risk Form
           <form>
-              <div>
-                  <label for="">Risktype Title</label>
-                  <input type="text"  v-model="model.title" required> 
+              <div class="form-row">
+                  <label for="riskTitle">Risktype Title</label>
+                  <input type="text" class="form-control"  id="riskTitle" v-model="model.title" required> 
               </div>
 
               <div>
-                  <label for="">RiskType Description</label>
-                  <input type="text" v-model="model.description">
+                  <label for="riskDesc">RiskType Description</label>
+                  <input type="text" class="form-control" id="riskDesc" v-model="model.description">
               </div>
 
-              <div>
-                  <button>Save</button>
-                  <button @click.prevent="handleSaveRiskType">Save and Create Form</button>
+              <div class="mt-2">
+                  <button class="btn btn-primary" @click.prevent="handleSaveRiskType">Save and Create Form</button>
               </div>
           </form>
       </div>
@@ -38,6 +37,7 @@ export default {
         this.$notify({
           text: `Risk ${riskTypeTitle} created successfully!`
         })
+        this.$router.push({name: 'Risk'})
       }).catch((error) => {
         this.$notify({
           text: 'Error creating risk type',

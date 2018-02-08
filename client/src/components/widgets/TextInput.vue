@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="form-group">
         <label for="">
             {{ field.label }}
         </label>
-        <input :type="inputType"/>
+        <input class="form-control" :type="inputType"/>
     </div>
 </template>
 

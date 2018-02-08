@@ -1,33 +1,24 @@
 <template>
   <div id="app">
-    <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
-  </li>
-</ul>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">BritCore</a>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{name: 'Risk'}" class="nav-link" >Risk Types</router-link>
+        </li>
+     </ul>
     <notifications  />
-    <router-view/>
+    <div class="container w-50 mx-auto">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
-<style>
-#app {
-  text-align: center;
-  margin-top: 60px;
-}
-</style>
+
