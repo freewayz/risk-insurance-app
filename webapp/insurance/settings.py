@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 SECRET_KEY = 've0ox&p%)-2#0w5_86imeecs#nl8f00(klgld6s*s4&ql2*(yf'
-
+ENV = os.getenv('ENV')
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -56,15 +56,27 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'insurance.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'insurance',
-        'USER': 'root',
-        'PASSWORD': 'p@55w0rd'
+if ENV == None or ENV == 'prod':
+    DEBUG = False
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'insurance',
+            'USER': 'root',
+            'HOST': '52.14.77.1',
+            'PORT': 3306,
+            'PASSWORD': 'y0udontknow#'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'insurance',
+            'USER': 'root',
+            'PASSWORD': 'p@55w0rd'
+        }
+    }
 
 
 LANGUAGE_CODE = 'en-us'
