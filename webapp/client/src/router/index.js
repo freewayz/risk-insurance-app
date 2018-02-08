@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Risk from '@/components/Risk'
 import RiskForm from '@/components/RiskForm'
 import RiskFormBuilder from '@/components/builder/RiskFormBuilder'
-
+import CreateRisk from '@/components/CreateRisk'
 Vue.use(Router)
 
 export default new Router({
@@ -12,6 +12,11 @@ export default new Router({
       path: '/',
       name: 'Risk',
       component: Risk
+    },
+    {
+      path: '/add/',
+      name: 'CreateRisk',
+      component: CreateRisk
     },
     {
       path: '/form/:riskId',

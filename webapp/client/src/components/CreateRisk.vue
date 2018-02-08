@@ -2,7 +2,6 @@
   <section>
       <div>
           Create Risk Form
-
           <form>
               <div>
                   <label for="">Risktype Title</label>
@@ -16,15 +15,15 @@
 
               <div>
                   <button>Save</button>
-                  <button>Save and Create Form</button>
+                  <button @click.prevent="handleSaveRiskType">Save and Create Form</button>
               </div>
           </form>
       </div>
   </section>
 </template>
 
-
 <script>
+import { createRiskType } from '@/services/risk'
 export default {
   name: 'CreateRiskForm',
   data () {
@@ -33,7 +32,19 @@ export default {
     }
   },
   methods: {
-    saveRiskType () {} 
+    handleSaveRiskType () {
+      createRiskType(this.model).then((response) => {
+        const riskTypeTitle = this.model.title
+        this.$notify({
+          text: `Risk ${riskTypeTitle} created successfully!`
+        })
+      }).catch((error) => {
+        this.$notify({
+          text: 'Error creating risk type',
+          type: 'error'
+        })
+      })
+    }
   }
 }
 </script>

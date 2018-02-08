@@ -3,12 +3,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueNotification from 'vue-notification'
 import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
 
-Vue.config(VueAxios, axios);
+Vue.use(VueAxios, axios)
+Vue.use(VueNotification)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
