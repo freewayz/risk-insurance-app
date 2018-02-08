@@ -8,7 +8,7 @@ router.register(
     base_name='risk-type'
     )
 router.register(
-        r'types/fields', 
+        r'form-fields', 
         viewset=RiskTypeFormFieldAPI, 
         base_name='risk-type-field'
     )
