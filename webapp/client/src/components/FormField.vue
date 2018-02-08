@@ -1,12 +1,12 @@
 <template>
   <div>
-      <component :is="formComponent"/>
+      <component :is="formComponent" :field="field"/>
   </div>
 </template>
 
 <script>
 import Options from './widgets/Options'
-import Text from './widgets/Text'
+import TextInput from './widgets/TextInput'
 const FIELD_TYPE = {
   TEXT: 'TEXT',
   NUMBER: 'NUMBER',
@@ -18,12 +18,12 @@ export default {
   props: ['field'],
   data () {
     return {
-      formComponent: 'text'
+      formComponent: 'text-input'
     }
   },
   components: {
     Options,
-    Text
+    TextInput
   },
   mounted () {
     this.setupFormType()
@@ -34,7 +34,7 @@ export default {
         case FIELD_TYPE.TEXT:
         case FIELD_TYPE.NUMBER:
         case FIELD_TYPE.DATE:
-          this.formComponent = 'text'
+          this.formComponent = 'text-input'
           break
         case FIELD_TYPE.OPTIONS:
           this.formComponent = 'options'
