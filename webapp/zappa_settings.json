@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": null,
+        "django_settings": "insurance.settings",
+        "profile_name": "abole",
+        "project_name": "webapp",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-1u0gp7l4o"
+    }
+}
