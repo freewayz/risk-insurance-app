@@ -36,7 +36,7 @@ const FIELDS_MOCK = [
         label: 'Option 2'
       }
     ]
-  },
+  }
 ]
 export default {
   name: 'RiskForm',

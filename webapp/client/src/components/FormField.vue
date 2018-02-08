@@ -7,12 +7,8 @@
 <script>
 import Options from './widgets/Options'
 import TextInput from './widgets/TextInput'
-const FIELD_TYPE = {
-  TEXT: 'TEXT',
-  NUMBER: 'NUMBER',
-  DATE: 'DATE',
-  OPTIONS: 'OPTIONS'
-}
+import {FIELD_TYPE} from '@/utils'
+
 export default {
   name: 'FormField',
   props: ['field'],
