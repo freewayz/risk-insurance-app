@@ -1,5 +1,10 @@
+from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
-from .apis import RiskTypeAPI, RiskTypeFormFieldAPI
+from .apis import  (
+    RiskTypeAPI, 
+    RiskTypeFormFieldAPI,
+    FormFieldAPI
+)
 
 router = DefaultRouter()
 router.register(
@@ -9,7 +14,13 @@ router.register(
     )
 router.register(
         r'form-fields', 
-        viewset=RiskTypeFormFieldAPI, 
-        base_name='risk-type-field'
+        viewset=FormFieldAPI, 
+        base_name='form-fields'
     )
-urlpatterns = router.urls
+
+urlpatterns = [
+    url(r'(?P<risk_type_pk>[0-9]+)/form-fields/', 
+    view=RiskTypeFormFieldAPI.as_view(), 
+    name="risk-form-field")
+]
+urlpatterns += router.urls

@@ -52,9 +52,15 @@ class RiskTypeFormAPITestCase(APITestCase):
 
     def test_that_risk_type_get_all_fields(self):
         self.data['risk_type'] = self.risktype.pk
-        for _ in range(3)
+        for _ in range(3):
             response = self.client.post(
                 path=self.url,
                 data=self.data
             )
-        
+    
+        path = '/risk/{}/form-fields/'.format(self.risktype.pk)
+        response = self.client.get(
+            path=path
+        )
+        data = json.loads(response.content)
+        self.assertEqual(len(data), 3)

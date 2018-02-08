@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
+from rest_framework.generics import ListAPIView
 from .serializers import (
     RiskTypeSerializer, RiskFormFieldSerializer,
     RiskFormFieldOptionSerializer
@@ -22,8 +23,9 @@ class FormFieldAPI(viewsets.ModelViewSet):
     queryset = RiskFormField.objects.all()
 
 
-class RiskTypeFormFieldAPI(viewsets.ViewSet):
-    def retrieve(self, request, risk_type_pk):
+class RiskTypeFormFieldAPI(ListAPIView):
+    def get(self, request, *args, **kwargs):
+        risk_type_pk = kwargs.get('risk_type_pk')
         risk_type = get_object_or_404(RiskType, pk=risk_type_pk)
         form_fields = RiskFormField.objects.filter(risk_type=risk_type)
         serialized_data = RiskFormFieldSerializer(instance=form_fields, many=True)
@@ -31,7 +33,6 @@ class RiskTypeFormFieldAPI(viewsets.ViewSet):
             data=serialized_data.data, 
             status=HTTP_200_OK
         )
-
 
 
 class FormFieldOptionAPI(viewsets.ModelViewSet):
