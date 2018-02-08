@@ -44,7 +44,9 @@ class RiskFormField(BaseModel):
 
 class RiskFormFieldOption(BaseModel):
     label = models.CharField(max_length=100)
-
+    form_field = models.ForeignKey(to=RiskFormField, 
+                            on_delete=models.SET_NULL, 
+                            null=True)
     class Meta:
         db_table = 'risk_form_field_option'
 
