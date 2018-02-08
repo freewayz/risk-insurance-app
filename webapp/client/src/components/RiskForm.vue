@@ -3,57 +3,51 @@
       <div>
           Risk Form
       </div>
-
-      <div v-for="(field, index) in riskTypeFields" :key="index">
+      <div v-if="riskTypeFields.length > 0">
+        <div v-for="(field, index) in riskTypeFields" :key="index">
           <form-field :field="field"/>
+        </div>
       </div>
+
+      <div v-else>
+        No Form has been configured for this risk type
+      </div>
+      
   </section>
 </template>
 
 <script>
+import { getRiskTypeFormFields, getRiskType } from '@/services/risk'
 import FormField from './FormField'
-const FIELDS_MOCK = [
-  {
-    label: 'Question Text',
-    field_type: 'TEXT'
-  },
-  {
-    label: 'Question Number',
-    field_type: 'NUMBER'
-  },
-  {
-    label: 'Question Date',
-    field_type: 'DATE'
-  },
-  {
-    label: 'Question Options',
-    field_type: 'OPTIONS',
-    options: [
-      {
-        label: 'Option 1'
-      },
-      {
-        label: 'Option 2'
-      }
-    ]
-  }
-]
+
 export default {
   name: 'RiskForm',
   data () {
     return {
       riskType: {},
-      riskTypeFields: FIELDS_MOCK
+      riskTypeFields: []
     }
   },
   components: {
     FormField
   },
-  created () {
-    this.getRiskFormFields()
+  mounted () {
+    this.onGetRiskType()
   },
   methods: {
-    getRiskFormFields () {}
+    onGetRiskType () {
+      const riskTypeId = this.$route.params.riskId
+      getRiskType(riskTypeId).then((response) => {
+        this.riskType = response.data
+        this.getAllRiskFormField(riskTypeId)
+      })
+    },
+
+    getAllRiskFormField (riskId) {
+      getRiskTypeFormFields(riskId).then((response) => {
+        this.riskTypeFields = response.data
+      })
+    }
   }
 }
 </script>

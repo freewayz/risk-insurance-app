@@ -13,7 +13,7 @@ export function getRiskType (riskId) {
   return http.get(`${URLS.TYPE}${riskId}/`)
 }
 
-export function getRiskTypes (data) {
+export function getRiskTypes () {
   return http.get(URLS.TYPE)
 }
 
