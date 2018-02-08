@@ -43,7 +43,7 @@ class RiskFormField(BaseModel):
 
 
 class RiskFormFieldOption(BaseModel):
-    text = models.CharField(max_length=100)
+    label = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'risk_form_field_option'

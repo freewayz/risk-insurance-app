@@ -64,3 +64,9 @@ class RiskTypeFormAPITestCase(APITestCase):
         )
         data = json.loads(response.content)
         self.assertEqual(len(data), 3)
+
+
+    
+class FormFieldTestCase(APITestCase):
+    def test_form_field_option_can_be_created(self):
+        
