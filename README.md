@@ -34,10 +34,10 @@ Amazon S3 help in serving the statis content which, talks to our api
 #### How to use the Application
 # Creating a Risk
 - User can create a risk type
- ![img](https://github.com/freewayz/britcore-insurance/create.png)
+ ![img](https://github.com/freewayz/britcore-insurance/blob/master/create.png)
 # Building Risk Form
 User can Build form for a risk type
-[imag]: https://github.com/freewayz/britcore-insurance/builder.png
+[imag]: (https://github.com/freewayz/britcore-insurance/blob/master/builder.png)
 # Displaying Risk Form
 The form can be displayed
-[imag]: https://github.com/freewayz/britcore-insurance/form-display.png
+[imag]: (https://github.com/freewayz/britcore-insurance/blob/master/form-display.png)
