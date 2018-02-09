@@ -1,7 +1,9 @@
 <template>
- <div class="form-inline">
+ <div class="form-inline mt-3">
     <div class="form-group">
-        <input type="text" class="form-control sm" v-for="(option, index) in fieldOptions" v-model="option.label" :key="index"/>
+        <input @keyup.enter="handleUpdateOption(option)" type="text" class="form-control form-control-sm" 
+                        v-for="(option, index) in fieldOptions" 
+                        v-model="option.label" :key="index"/>
     </div>
     <button class="btn btn-light btn-sm" @click="handleAddOption">Add Option</button>
  </div>
@@ -9,7 +11,7 @@
 </template>
 
 <script>
-import { createFormFieldOptions } from '@/services/risk'
+import { createFormFieldOptions, updateFormFieldOption } from '@/services/risk'
 export default {
   name: 'FieldOptions',
   props: ['field'],
@@ -24,9 +26,19 @@ export default {
     }
   },
   methods: {
+    handleUpdateOption (option) {
+      updateFormFieldOption(option.id, option).then((response) => {
+        this.$notify({
+          text: 'Option updated successfully',
+          type: 'info'
+        })
+      })
+    },
+
     handleAddOption () {
       const jsonData = {
-        label: 'Enter option'
+        label: 'Enter option',
+        form_field: this.field.id
       }
       createFormFieldOptions(jsonData).then((response) => {
         this.fieldOptions.push(response.data)
