@@ -2,7 +2,7 @@
   <div id="app" class="mx-auto">
       <ul class="nav justify-content-center bg-light">
         <li class="nav-item">
-          <a class="nav-link active" href="https://britcore.com">BRITCORE</a>
+          <a class="nav-link" href="https://britecore.com">BRITECORE</a>
         </li>
         <li class="nav-item">
           <router-link  :to="{name: 'Risk'}" class="nav-link" >RISK</router-link>

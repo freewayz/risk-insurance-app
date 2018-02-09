@@ -7,7 +7,9 @@
                         v-for="(option, index) in fieldOptions" 
                         v-model="option.label" :key="index"/>
     </div>
-    <button class="btn btn-light btn-sm" @click="handleAddOption">Add Option</button>
+    <div class="">
+        <button class="btn btn-info btn-sm" @click="handleAddOption">Add Option</button>
+    </div>
  </div>
   
 </template>

@@ -1,14 +1,14 @@
 <template>
-  <div class="">
-      <h5 class="text-center">
+  <div>
+      <h5 class="text-center mb-3">
         {{ riskType.title }}  Form Builder
       </h5>
-      <div class="mb-3" v-for="(field, index) in fields" :key="index">
+      <div class="mb-3 border border-primary" v-for="(field, index) in fields" :key="index">
           <field-collector :field="field"/>
       </div>
 
-      <div class="mb-6 float-right">
-          <button class="btn btn-info btn-sm" @click.prevent="handleAddField">Add Field</button>
+      <div class="mb-3 float-right">
+          <button class="btn btn-warning" @click.prevent="handleAddField">New Field</button>
       </div>
   </div>
 </template>

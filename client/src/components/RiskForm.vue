@@ -10,7 +10,7 @@
           <form-field :field="field"/>
         </div>
         <div class="text-right">
-          <button class="btn btn-primary">Save Information</button>
+          <button class="btn btn-warning btn-md">Save Information</button>
         </div>
       </div>
       <div v-else>
