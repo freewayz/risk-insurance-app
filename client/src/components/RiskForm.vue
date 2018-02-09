@@ -16,8 +16,6 @@
       <div v-else>
         No Form has been configured for this risk type
       </div>
-
-      
   </div>
 </template>
 
