@@ -57,6 +57,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'insurance.wsgi.application'
 if ENV == None or ENV == 'prod':
+    DB_PASS = os.environ.get('DB_PASSWORD')
     DEBUG = False
     DATABASES = {
         'default': {
@@ -65,7 +66,7 @@ if ENV == None or ENV == 'prod':
             'USER': 'root',
             'HOST': '52.14.77.1',
             'PORT': 3306,
-            'PASSWORD': 'y0udontknow#'
+            'PASSWORD': DB_PASS
         }
     }
 else:
