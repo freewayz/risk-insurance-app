@@ -1,5 +1,6 @@
 <template>
-  <div class="form-inline">
+<div>
+    <div class="form-inline">
       <div class="form-group mr-2">
         <input @keyup.enter="handleUpdateFormField" class="form-control" type="text" v-model="model.label"/>
       </div>
@@ -9,15 +10,16 @@
             {{ fieldType }}
         </option>
       </select>
-
-      <div v-show="isOptions">
-
-      </div>
   </div>
+  <div  v-if="isOptions">
+          <field-option :field="field"/>
+  </div>
+</div>
 </template>
 
 <script>
 import { updateRiskTypeFormField } from '@/services/risk'
+import FieldOption from './FieldOption'
 export default {
   name: 'FieldCollector',
   props: ['field'],
@@ -29,6 +31,10 @@ export default {
       selectedFieldType: {},
       fieldDataTypes: ['TEXT', 'NUMBER', 'DATE', 'OPTIONS']
     }
+  },
+
+  components: {
+    FieldOption,
   },
 
   computed: {

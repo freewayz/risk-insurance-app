@@ -9,13 +9,14 @@ class RiskTypeSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class RiskFormFieldSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RiskFormField
-        fields = "__all__"
-
-
 class RiskFormFieldOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = RiskFormFieldOption
+        fields = "__all__"
+
+
+class RiskFormFieldSerializer(serializers.ModelSerializer):
+    options = RiskFormFieldOptionSerializer(many=True, read_only=True)
+    class Meta:
+        model = RiskFormField
         fields = "__all__"
