@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       model: {
-        field_type: '',
+        field_type: ''
       },
       selectedFieldType: {},
       fieldDataTypes: ['TEXT', 'NUMBER', 'DATE', 'OPTIONS']
@@ -34,11 +34,11 @@ export default {
   },
 
   components: {
-    FieldOption,
+    FieldOption
   },
 
   computed: {
-    isOptions() {
+    isOptions () {
       if (this.model.field_type === 'OPTIONS') {
         return true
       }

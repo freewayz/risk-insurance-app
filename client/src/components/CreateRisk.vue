@@ -1,8 +1,7 @@
 <template>
-  <section>
-      <div>
-          Create Risk Form
-          <form>
+      <div class="flex-column">
+          <h3 class="text-center">CREATE RISK TYPE</h3>
+          <form class="mt-1">
               <div class="form-row">
                   <label for="riskTitle">Risktype Title</label>
                   <input type="text" class="form-control"  id="riskTitle" v-model="model.title" required> 
@@ -13,12 +12,11 @@
                   <input type="text" class="form-control" id="riskDesc" v-model="model.description">
               </div>
 
-              <div class="mt-2">
-                  <button class="btn btn-primary" @click.prevent="handleSaveRiskType">Save and Create Form</button>
+              <div class="mt-2 text-right">
+                  <button class="btn btn-primary" @click.prevent="handleSaveRiskType">Save and Build Form</button>
               </div>
           </form>
       </div>
-  </section>
 </template>
 
 <script>
