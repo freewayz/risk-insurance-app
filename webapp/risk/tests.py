@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .models import ( RiskType, RiskFormField, RiskFormFieldOption)
-from .utils_test import mock_risk_type
+from .utils_test import mock_risk_type, mock_risk_form_field
 from model_mommy import mommy
 
 
@@ -43,4 +43,11 @@ class RiskFormFieldTestCase(TestCase):
         form_field = items[0]
         self.assertEqual(form_field.field_type, 'TEXT')
 
+    def test_that_update_works(self):
+        mock_risk_form_field()
+        amock = RiskFormField.objects.first()
+        amock.label = 'This was updated'
+        amock.save()
+        self.assertEqual(RiskFormField.objects.first().label, 'This was updated')
+       
 

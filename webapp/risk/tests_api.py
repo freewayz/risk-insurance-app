@@ -65,6 +65,26 @@ class RiskTypeFormAPITestCase(APITestCase):
         data = json.loads(response.content)
         self.assertEqual(len(data), 3)
 
+    def test_that_field_option_returns_list(self):
+        form_field =  mommy.make(RiskFormField, **{
+            'risk_type': self.risktype,
+            'field_type': 'NUMBER',
+        })
+        opt_data = {
+            'label': 'This is an option'
+        }
+        opt_data['form_field']  = form_field.pk
+        for i in range(3):
+            self.client.post(
+                path='/risk/form-fields-options/',
+                data=opt_data
+            )
+        path = '/risk/types/{}/form_fields/'.format(self.risktype.pk)
+        response = self.client.get(path)
+        self.assertEqual(response.status_code, 200)
+        jsonData = json.loads(response.content)
+        options = jsonData[0]['options']
+        self.assertEqual(len(options), 3)
 
     
 class FormFieldTestCase(APITestCase):
@@ -82,3 +102,5 @@ class FormFieldTestCase(APITestCase):
         )
         self.assertEqual(response.status_code, 201)
         self.assertContains(response, 'This is an option', status_code=201)
+
+   
