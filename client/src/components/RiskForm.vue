@@ -1,8 +1,8 @@
 <template>
-  <section>
-      <div>
-          Risk Form
-      </div>
+  <div class="d-flex">
+      <h3 class="text-center">
+           {{  riskType.title }}
+      </h3>
       <div v-if="riskTypeFields.length > 0">
         <div v-for="(field, index) in riskTypeFields" :key="index">
           <form-field :field="field"/>
@@ -13,7 +13,7 @@
         No Form has been configured for this risk type
       </div>
       
-  </section>
+  </div>
 </template>
 
 <script>
