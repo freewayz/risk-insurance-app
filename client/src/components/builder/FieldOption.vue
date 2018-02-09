@@ -1,7 +1,9 @@
 <template>
- <div class="form-inline mt-3">
+ <div class="mt-3">
     <div class="form-group">
-        <input @keyup.enter="handleUpdateOption(option)" type="text" class="form-control form-control-sm" 
+        <input @keyup.enter="handleUpdateOption(option)" 
+                    type="text" 
+                    class="form-control form-control-sm mt-2" 
                         v-for="(option, index) in fieldOptions" 
                         v-model="option.label" :key="index"/>
     </div>

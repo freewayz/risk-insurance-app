@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="d-flex flex-column">
     <div class="form-inline">
       <div class="form-group mr-2">
         <input @keyup.enter="handleUpdateFormField" class="form-control" type="text" v-model="model.label"/>

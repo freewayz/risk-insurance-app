@@ -1,11 +1,13 @@
 <template>
-  <div class="container">
-      Risk Form Builder
+  <div class="">
+      <h5 class="text-center">
+        {{ riskType.title }}  Form Builder
+      </h5>
       <div class="mb-3" v-for="(field, index) in fields" :key="index">
           <field-collector :field="field"/>
       </div>
 
-      <div>
+      <div class="mb-6 float-right">
           <button class="btn btn-info btn-sm" @click.prevent="handleAddField">Add Field</button>
       </div>
   </div>
