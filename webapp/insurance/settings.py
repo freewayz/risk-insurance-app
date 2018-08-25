@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'risk',
+    'account',
     'rest_framework',
     'corsheaders'
 ]
@@ -96,7 +97,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
-    
+
 }
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['127.0.0.1', '4ur9bc8036.execute-api.us-east-1.amazonaws.com/dev', '*']

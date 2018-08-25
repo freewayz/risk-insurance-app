@@ -1,22 +1,18 @@
 <template>
-  <div class="d-flex flex-column">
+  <el-container>
       <h3 class="">
            {{ riskType.title }}
       </h3>
       <p>{{ riskType.description }}</p>
 
-      <div v-if="riskTypeFields.length > 0">
-        <div v-for="(field, index) in riskTypeFields" :key="index">
-          <form-field :field="field"/>
-        </div>
-        <div class="text-right">
-          <button class="btn btn-warning btn-md">Save Information</button>
-        </div>
-      </div>
+      <el-form v-if="riskTypeFields.length > 0" style="width: 100%">
+          <form-field v-for="(field, index) in riskTypeFields" :key="index" :field="field"/>
+          <el-button >Save Information</el-button>
+      </el-form>
       <div v-else>
         No Form has been configured for this risk type
       </div>
-  </div>
+  </el-container>
 </template>
 
 <script>

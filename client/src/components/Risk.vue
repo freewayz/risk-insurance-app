@@ -1,19 +1,32 @@
 <template>
-  <div class="d-flex flex-column">
-      <h3 class="text-center">RISK TYPE ITEMS</h3>
-      <div  v-if="riskItems.length > 0" class="list-group">
-        <div v-for="(risk, index) in riskItems" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="mr-2"> {{ risk.title }} </div>
-          <div class="mr-2"> {{ risk.description }} </div>
-          <div class="mr-2">
-            <router-link class="btn btn-info btn-sm" :to="{name: 'RiskForm', params: {riskId: risk.id}}"> Display </router-link>
-            <router-link class="btn btn-warning btn-sm" :to="{name: 'RiskFormBuilder', params: {riskId: risk.id}}"> Build </router-link>
-          </div>
-        </div>
-      </div>
-      <div v-else>
-        No Risk Item
-      </div>
+  <div>
+    <h3 class="text-center">RISK TYPE ITEMS</h3>
+    <div  v-if="riskItems.length > 0" class="list-group">
+      <el-table :data="riskItems" style="width: 100%">
+        <el-table-column
+                                  prop="title"
+                                  label="Title"
+                                  width="450">
+        </el-table-column>
+        <el-table-column
+                                  prop="description"
+                                  label="Description"
+                                  width="300">
+        </el-table-column>
+        <el-table-column
+                                  fixed="right"
+                                  label="Operations"
+                                  width="150">
+          <template slot-scope="scope">
+            <el-button @click="gotoPreview(scope.row)" type="text" size="small">Preview</el-button>
+            <el-button @click="gotoBuilder(scope.row)" type="text" size="small">Customize</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <div v-else>
+      No Risk Item
+    </div>
   </div>
 </template>
 
@@ -35,6 +48,15 @@ export default {
       getRiskTypes().then((response) => {
         this.riskItems = response.data
       })
+    },
+
+    gotoPreview (item) {
+      console.log('@@Item ', item)
+      this.$router.push({name: 'RiskForm', params: {riskId: item.id}})
+    },
+
+    gotoBuilder (item) {
+      this.$router.push({name: 'RiskFormBuilder', params: {riskId: item.id}})
     }
   }
 }

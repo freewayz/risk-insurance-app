@@ -1,10 +1,5 @@
 <template>
-    <div class="form-group">
-        <label for="">
-            {{ field.label }}
-        </label>
-        <input class="form-control" :type="inputType"/>
-    </div>
+  <el-input :type="inputType"></el-input>
 </template>
 
 <script>

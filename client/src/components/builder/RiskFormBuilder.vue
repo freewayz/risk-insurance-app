@@ -1,14 +1,14 @@
 <template>
   <div>
-      <h5 class="text-center mb-3">
-        {{ riskType.title }}  Form Builder
-      </h5>
+      <h1 class="h1">
+        Form Builder
+      </h1>
       <div class="mb-3 border border-primary" v-for="(field, index) in fields" :key="index">
           <field-collector :field="field"/>
       </div>
 
       <div class="mb-3 float-right">
-          <button class="btn btn-warning" @click.prevent="handleAddField">New Field</button>
+          <el-button type="primary" size="small" icon="el-icon-plus" @click.prevent="handleAddField">Add Field</el-button>
       </div>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
         risk_type: this.riskType.id
       }
       createRiskTypeFormField(newField).then((response) => {
-        this.fields.push(response.data)  
+        this.fields.push(response.data)
         this.$notify({
           text: 'New risk field added'
         })
@@ -68,3 +68,7 @@ export default {
   }
 }
 </script>
+
+<style type="text/css" scoped>
+
+</style>

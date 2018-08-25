@@ -1,23 +1,28 @@
 <template>
-<div class="d-flex flex-column ">
-    <div class="d-flex justify-content-space-between">
-      <div class="w-75 mr-3">
-        <input @keyup.enter="handleUpdateFormField" class="form-control mr-3" type="text" v-model="model.label"/>
-      </div>
-      <div class="">
-        <select @change="handleUpdateFormField" class="form-control" v-model="model.field_type">
-        <option value="" disabled>Select Field</option>
-        <option v-for="(fieldType, index) in fieldDataTypes" :key="index" :value="fieldType">
-            {{ fieldType }}
-        </option>
-      </select>
-      </div>
-  </div>
-  <div  v-if="isOptions"  class="w-50">
-      <h6 class="m-2">Provide Options</h6>
-      <field-option :field="field"/>
-  </div>
-</div>
+  <el-card class="box-card field-collector__card">
+    <el-form size="small">
+      <el-row gutter="5">
+        <el-col :span="18">
+          <el-input label="Field name" v-on:change="handleUpdateFormField" type="text" v-model="model.label"/>
+          </el-col>
+          <el-col :span="6">
+            <el-select @change="handleUpdateFormField"  v-model="model.field_type"
+                                                        placeholder="Select Field">
+              <el-option value="" disabled>Select Field</el-option>
+              <el-option v-for="(fieldType, index) in fieldDataTypes" :key="index" :value="fieldType">
+                {{ fieldType }}
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row v-if="hasOptions" >
+          <h6 class="m-2">Field Options</h6>
+          <field-option :field="field"/>
+        </el-row>
+      </el-form>
+      <el-button icon="el-icon-delete" circle/>
+
+    </el-card>
 </template>
 
 <script>
@@ -41,7 +46,7 @@ export default {
   },
 
   computed: {
-    isOptions () {
+    hasOptions () {
       if (this.model.field_type === 'OPTIONS') {
         return true
       }
@@ -64,3 +69,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.field-collector__card {
+  margin-bottom: 10px;
+}
+</style>
