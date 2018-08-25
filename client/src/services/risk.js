@@ -38,3 +38,7 @@ export function createFormFieldOptions (data) {
 export function updateFormFieldOption (id, data) {
   return http.put(`${URLS.FIELDS_OPITON}${id}/`, data)
 }
+
+export function deleteFormField (id) {
+  return http.delete(`${URLS.FIELDS}${id}/`)
+}

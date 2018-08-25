@@ -4,7 +4,7 @@
         Form Builder
       </h1>
       <div class="mb-3 border border-primary" v-for="(field, index) in fields" :key="index">
-          <field-collector :field="field"/>
+          <field-collector :field="field" v-on:remove="removeFromParent"/>
       </div>
 
       <div class="mb-3 float-right">
@@ -14,7 +14,10 @@
 </template>
 
 <script>
-import { createRiskTypeFormField, getRiskType, getRiskTypeFormFields } from '@/services/risk'
+import {
+  createRiskTypeFormField,
+  getRiskType,
+  getRiskTypeFormFields } from '@/services/risk'
 import FieldCollector from './FieldCollector'
 export default {
   name: 'RiskFormBuilder',
@@ -57,14 +60,19 @@ export default {
       createRiskTypeFormField(newField).then((response) => {
         this.fields.push(response.data)
         this.$notify({
-          text: 'New risk field added'
+          title: 'New risk field added'
         })
       }).catch((err) => {
         this.$notify({
-          text: 'Error creating field. Try again'
+          title: 'Error creating field. Try again'
         })
       })
+    },
+
+    removeFromParent (field) {
+      this.fields = this.fields.filter(f => f.id !== field.id)
     }
+
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card field-collector__card">
     <el-form size="small">
-      <el-row gutter="5">
+      <el-row gutter=5>
         <el-col :span="18">
           <el-input label="Field name" v-on:change="handleUpdateFormField" type="text" v-model="model.label"/>
           </el-col>
@@ -20,12 +20,15 @@
           <field-option :field="field"/>
         </el-row>
       </el-form>
-      <el-button icon="el-icon-delete" circle/>
+      <el-button @click="handleDeleteFormField" icon="el-icon-delete" circle/>
     </el-card>
 </template>
 
 <script>
-import { updateRiskTypeFormField } from '@/services/risk'
+import {
+  updateRiskTypeFormField,
+  deleteFormField
+} from '@/services/risk'
 import FieldOption from './FieldOption'
 export default {
   name: 'FieldCollector',
@@ -61,7 +64,20 @@ export default {
     handleUpdateFormField () {
       updateRiskTypeFormField(this.model.id, this.model).then((response) => {
         this.$notify({
-          text: 'Updated form field'
+          title: 'Updated form field'
+        })
+      })
+    },
+
+    handleDeleteFormField () {
+      deleteFormField(this.field.id).then((res) => {
+        this.$emit('remove', this.field)
+        this.$notify({
+          title: 'Field Removed successfully'
+        })
+      }).catch((err) => {
+        this.$notify({
+          title: 'Ooppss: Server Error'
         })
       })
     }
