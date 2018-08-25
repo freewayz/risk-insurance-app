@@ -21,7 +21,6 @@
         </el-row>
       </el-form>
       <el-button icon="el-icon-delete" circle/>
-
     </el-card>
 </template>
 
