@@ -1,5 +1,5 @@
 <template>
-  <el-datepicker type="date" placeholder="Pick a date" v-model="field" style="width: 100%;"/>
+  <el-date-picker type="date" placeholder="Pick a date" v-model="field" style="width: 100%;"/>
 </template>
 
 <script>

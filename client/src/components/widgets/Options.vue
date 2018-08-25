@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="field.label">
+  <el-form-item>
     <el-select v-if="field.options.length > 3">
       <el-option v-for="(opt, index) in field.options" :label="opt.label" :value="opt.id" :key="index"></el-option>
     </el-select>

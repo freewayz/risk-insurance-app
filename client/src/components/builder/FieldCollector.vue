@@ -21,7 +21,7 @@
         </el-row>
       </el-form>
       <div class="field-collector__card-action">
-      <el-button @click="handleDeleteFormField" icon="el-icon-delete" circle type="text"/>
+      <el-button @click="handleDeleteFormField" size="mini" icon="el-icon-delete" circle type="text"/>
       </div>
     </el-card>
 </template>

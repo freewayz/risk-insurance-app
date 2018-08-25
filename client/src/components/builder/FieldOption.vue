@@ -7,7 +7,7 @@
           placeholder="Field name"
           style="margin-right: 5px;"
           v-model="option.label"/>
-        <el-button circle size="mini" type="danger"  class="el-icon-delete"/>
+        <el-button circle size="mini" @click="handleRemoveOption(option)" type="danger"  class="el-icon-delete"/>
     </div>
     <div>
       <el-button type="primary" plain size="mini" icon="el-icon-circle-plus-outline"  @click="handleAddOption">
@@ -19,7 +19,11 @@
 </template>
 
 <script>
-import { createFormFieldOptions, updateFormFieldOption } from '@/services/risk'
+import {
+  createFormFieldOptions,
+  updateFormFieldOption,
+  deleteFormFieldOption
+} from '@/services/risk'
 export default {
   name: 'FieldOptions',
   props: ['field'],
@@ -35,13 +39,20 @@ export default {
   },
   methods: {
     handleUpdateOption (option) {
-      console.log('@@Changes', option)
       updateFormFieldOption(option.id, option).then((response) => {
         this.$notify({
           text: 'Option updated successfully',
           type: 'info'
         })
       })
+    },
+
+    handleRemoveOption (option) {
+      deleteFormFieldOption(option.id)
+        .then((res) => {
+          this.$notify({title: 'Option removed'})
+          this.fieldOptions = this.fieldOptions.filter(opt => opt.id !== option.id)
+        }).catch((err) => this.$notify({}))
     },
 
     handleAddOption () {
