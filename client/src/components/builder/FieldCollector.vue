@@ -20,7 +20,9 @@
           <field-option :field="field"/>
         </el-row>
       </el-form>
-      <el-button @click="handleDeleteFormField" icon="el-icon-delete" circle/>
+      <div class="field-collector__card-action">
+      <el-button @click="handleDeleteFormField" icon="el-icon-delete" circle type="text"/>
+      </div>
     </el-card>
 </template>
 
@@ -88,5 +90,10 @@ export default {
 <style scoped>
 .field-collector__card {
   margin-bottom: 10px;
+}
+.field-collector__card-action {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 3px 0;
 }
 </style>
