@@ -1,22 +1,20 @@
 <template>
-      <div class="flex-column">
+      <el-container>
+        <div class="create-risk__panel">
           <h3 class="text-center">CREATE RISK TYPE</h3>
-          <form class="mt-1">
-              <div class="form-row">
-                  <label for="riskTitle">Risktype Title</label>
-                  <input type="text" class="form-control"  id="riskTitle" v-model="model.title" required> 
-              </div>
+          <el-form>
+              <el-form-item label="Risk title">
+                  <el-input v-model="model.title"/>
+              </el-form-item>
 
-              <div>
-                  <label for="riskDesc">RiskType Description</label>
-                  <input type="text" class="form-control" id="riskDesc" v-model="model.description">
-              </div>
+              <el-form-item label="Risk description">
+                  <el-input type="text" v-model="model.description"/>
+              </el-form-item>
 
-              <div class="mt-2 text-right">
-                  <button class="btn btn-primary" @click.prevent="handleSaveRiskType">Save and Build Form</button>
-              </div>
-          </form>
-      </div>
+              <el-button type="primary" :loading="loading"  @click.prevent="handleSaveRiskType">Start building</el-button>
+          </el-form>
+          </div>
+      </el-container>
 </template>
 
 <script>
@@ -25,18 +23,22 @@ export default {
   name: 'CreateRiskForm',
   data () {
     return {
+      loading: false,
       model: {}
     }
   },
   methods: {
     handleSaveRiskType () {
+      this.loading = true
       createRiskType(this.model).then((response) => {
         const riskTypeTitle = this.model.title
+        this.loading = false
         this.$notify({
           text: `Risk ${riskTypeTitle} created successfully!`
         })
         this.$router.push({name: 'Risk'})
       }).catch((error) => {
+        this.loading = false
         this.$notify({
           text: 'Error creating risk type',
           type: 'error'
@@ -46,3 +48,12 @@ export default {
   }
 }
 </script>
+
+<style type="text/css" scoped>
+.create-risk__panel {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+}
+</style>
