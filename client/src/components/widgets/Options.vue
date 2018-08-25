@@ -4,7 +4,7 @@
       <el-option v-for="(opt, index) in field.options" :label="opt.label" :value="opt.id" :key="index"></el-option>
     </el-select>
     <el-radio-group v-else>
-      <el-radio v-for="(opt, index) in field.options" value="opt.id" :label="opt.label" :key="index"/>
+      <el-radio-button v-for="(opt, index) in field.options" value="opt.id" :label="opt.label" :key="index"/>
     </el-radio-group>
     </el-form-item>
 </template>
