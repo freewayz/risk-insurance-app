@@ -11,7 +11,7 @@
                   <el-input type="text" v-model="model.description"/>
               </el-form-item>
 
-              <el-button type="primary" :loading="loading"  @click.prevent="handleSaveRiskType">Start building</el-button>
+              <el-button type="primary" :loading="loading" icon='el-icon-tickets' @click.prevent="handleSaveRiskType">Start building</el-button>
           </el-form>
           </div>
       </el-container>
@@ -36,7 +36,7 @@ export default {
         this.$notify({
           text: `Risk ${riskTypeTitle} created successfully!`
         })
-        this.$router.push({name: 'Risk'})
+        this.$router.push({name: 'RiskFormBuilder', params: {riskId: response.data.id}})
       }).catch((error) => {
         this.loading = false
         this.$notify({
