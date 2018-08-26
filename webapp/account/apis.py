@@ -28,8 +28,9 @@ class LoginResource(ViewSet):
     def create(self, request):
         login_data = LoginSerializer(data=request.data)
         if login_data.is_valid():
-            user, token = login_data.save()
-            return Response(data={'token': token}, status=HTTP_200_OK)
+            token, created = login_data.save()
+            print('###', token.key)
+            return Response(data={'token': token.key}, status=HTTP_200_OK)
         return Response(
             data=login_data.errors,
             status=HTTP_400_BAD_REQUEST

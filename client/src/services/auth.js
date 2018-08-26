@@ -11,6 +11,7 @@ export const register = (data) => http.post(REGISTER_URL, data)
 export const saveToken = (token, username) => {
   localStorage.setItem('_UFO', token)
   localStorage.setItem('_AVATAR', username)
+  http.defaults.headers.common.Authorization = `TOKEN ${token}`
 }
 
 export const getStorageItem = (key) => {

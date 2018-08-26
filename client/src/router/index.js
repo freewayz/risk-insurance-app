@@ -6,9 +6,10 @@ import RiskFormBuilder from '@/components/builder/RiskFormBuilder'
 import CreateRisk from '@/components/CreateRisk'
 import Login from '@/components/auth/Login'
 import Register from '@/components/auth/Register'
+import {isLoggedIn} from '@/services/auth'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/login',
@@ -23,22 +24,53 @@ export default new Router({
     {
       path: '/',
       name: 'Risk',
-      component: Risk
+      component: Risk,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/add/',
       name: 'CreateRisk',
-      component: CreateRisk
+      component: CreateRisk,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/form/:riskId',
       name: 'RiskForm',
-      component: RiskForm
+      component: RiskForm,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/builder/:riskId',
       name: 'RiskFormBuilder',
-      component: RiskFormBuilder
+      component: RiskFormBuilder,
+      meta: {
+        auth: true
+      }
     }
   ]
 })
+
+// check if the page has the auth true
+router.beforeEach((to, from, next) => {
+  /* eslint-disable */
+  if (to.matched.some(record => record.meta.auth)) {
+    isLoggedIn()
+      .then((response) => {
+        next()
+      }).catch((error) => {
+        router.push('/login')
+      });
+  } else {
+    // not protected always call next to navigate to the page
+    next();
+  }
+})
+
+
+export default router
