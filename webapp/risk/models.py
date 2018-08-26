@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import User
 
 
 FIELD_TYPES = (
@@ -25,11 +26,11 @@ class BaseModel(models.Model):
 class RiskType(BaseModel):
     title = models.CharField(max_length=100, blank=False, unique=True)
     description = models.CharField(max_length=200, blank=False)
-
+    owner = models.ForeignKey(to=User, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         db_table = 'risk_type'
-        
+
 
 class RiskFormField(BaseModel):
     risk_type = models.ForeignKey(to=RiskType, on_delete=models.CASCADE, null=True)
@@ -42,9 +43,9 @@ class RiskFormField(BaseModel):
 
 class RiskFormFieldOption(BaseModel):
     label = models.CharField(max_length=100)
-    form_field = models.ForeignKey(to=RiskFormField, 
+    form_field = models.ForeignKey(to=RiskFormField,
                             related_name='options',
-                            on_delete=models.SET_NULL, 
+                            on_delete=models.SET_NULL,
                             null=True)
     class Meta:
         db_table = 'risk_form_field_option'
