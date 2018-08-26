@@ -31,3 +31,23 @@ class RegistrationSerializer(serializers.Serializer):
         user.save()
         return 'Created new account succesfully'
 
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    pasword = serializers.CharField()
+
+    def validate(self, data):
+
+        try:
+            user = User.objects.get_by_natural_key(username=data.get('username'))
+        except User.DoesNotExist:
+            raise ValidationError(
+                details='User with this account not found'
+            )
+
+        if user.check_password(data.get('password')):
+            return data
+
+        raise ValidationError(
+            details='Username or password incorrect'
+        )
