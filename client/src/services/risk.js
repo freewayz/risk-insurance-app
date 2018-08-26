@@ -14,8 +14,8 @@ export function getRiskType (riskId) {
   return http.get(`${URLS.TYPE}${riskId}/`)
 }
 
-export function getRiskTypes () {
-  return http.get(URLS.TYPE)
+export function getRiskTypes (filter) {
+  return http.get(`${URLS.TYPE}?filter=${filter}`)
 }
 
 export function createRiskTypeFormField (data) {
