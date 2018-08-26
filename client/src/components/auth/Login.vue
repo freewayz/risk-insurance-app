@@ -15,7 +15,7 @@
                 <el-input v-model="model.username" placeholder="Provide username"/>
                 </el-form-item>
                 <el-form-item label="Password">
-                  <el-input v-model="model.password"/>
+                  <el-input type="password" v-model="model.password"/>
                   </el-form-item>
 
                   <el-button :loading="loading" size="small" @click="onLogin" type="primary" icon="el-icon-forward" >Login </el-button>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {login} from '@/services/auth'
+import {login, saveToken} from '@/services/auth'
 
 export default {
   name: 'Login',
@@ -50,7 +50,10 @@ export default {
       login(this.model)
         .then((res) => {
           this.loading = false
-          // navigate to dashboard
+          const token = res.data.token
+          saveToken(token, this.model.username)
+        })
+        .then(() => {
           this.$router.push({name: 'Risk'})
         })
         .catch((err) => {
