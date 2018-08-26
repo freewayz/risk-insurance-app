@@ -1,4 +1,4 @@
-import http from '@utils/http'
+import http from '@/utils/http'
 
 const LOGIN_URL = '/account/login/'
 const REGISTER_URL = '/account/register/'

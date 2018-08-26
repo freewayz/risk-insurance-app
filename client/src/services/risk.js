@@ -1,9 +1,9 @@
 import http from '@/utils/http'
 
 const URLS = {
-  TYPE: '/types/',
-  FIELDS: '/form-fields/',
-  FIELDS_OPITON: '/form-fields-options/'
+  TYPE: '/risk/types/',
+  FIELDS: '/risk/form-fields/',
+  FIELDS_OPITON: '/risk/form-fields-options/'
 }
 
 export function createRiskType (data) {
