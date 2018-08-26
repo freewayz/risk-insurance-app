@@ -6,7 +6,8 @@ from .serializers import RegistrationSerializer, LoginSerializer
 
 
 class RegistationResource(ViewSet):
-
+    authentication_classes = ()
+    permission_classes = ()
     def create(self, request):
         register_data = RegistrationSerializer(data=request.data)
         if register_data.is_valid():
@@ -22,7 +23,8 @@ class RegistationResource(ViewSet):
         )
 
 class LoginResource(ViewSet):
-
+    authentication_classes = ()
+    permission_classes = ()
     def create(self, request):
         login_data = LoginSerializer(data=request.data)
         if login_data.is_valid():

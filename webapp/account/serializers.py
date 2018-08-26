@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 
 class RegistrationSerializer(serializers.Serializer):
@@ -11,7 +12,7 @@ class RegistrationSerializer(serializers.Serializer):
         # check if username already exist
         try:
             User.objects.get_by_natural_key(data.get('username'))
-            raise ValidationError(details={'message':'User with this username already exist'})
+            raise ValidationError(detail={'message':'User with this username already exist'})
         except User.DoesNotExist:
             pass
 
@@ -20,7 +21,7 @@ class RegistrationSerializer(serializers.Serializer):
 
 
     def create(self, data):
-        user = User(
+        user = User.objects.create(
             username=data.get('username'),
             password=data.get('password'),
             email=data.get('email'),
@@ -28,7 +29,8 @@ class RegistrationSerializer(serializers.Serializer):
             last_name=''
         )
 
-        user.save()
+        print('@@Created user', user)
+        Token.objects.get_or_create(user=user)
         return 'Created new account succesfully'
 
 

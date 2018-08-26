@@ -1,8 +1,8 @@
 <template>
   <el-container>
     <div class="auth-panel">
-      <el-card>
-        <el-row>
+      <el-card class="box-card">
+                <el-row>
           <el-col :span="10">
             <div class="auth-panel__info">
               <span>BRITECORE RISK INSURANCE APP</span>
@@ -19,13 +19,13 @@
                   </el-form-item>
 
                   <el-button :loading="loading" size="small" @click="onLogin" type="primary" icon="el-icon-forward" >Login </el-button>
-                  <el-button type="text" size="mini" plain> Don't have an account </el-button>
+                  <el-button @click="gotoCreateAccount" type="text" size="mini" plain> Don't have an account </el-button>
                 </el-form>
               </el-col>
             </el-row>
           </el-card>
     </div>
-</el-container>
+        </el-container>
 </template>
 
 <script>
@@ -60,7 +60,12 @@ export default {
             message: 'Username or password incorrect'
           })
         })
+    },
+
+    gotoCreateAccount () {
+      this.$router.push({name: 'Register'})
     }
+
   }
 }
 </script>
