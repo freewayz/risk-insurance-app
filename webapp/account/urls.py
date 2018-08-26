@@ -9,4 +9,8 @@ router.register(
     base_name='register'
 )
 
-urlpatterns = router.urls
+urlpatterns = [
+
+]
+
+urlpatterns += router.urls
