@@ -49,5 +49,3 @@ class RiskFormFieldOption(BaseModel):
                             null=True)
     class Meta:
         db_table = 'risk_form_field_option'
-
-

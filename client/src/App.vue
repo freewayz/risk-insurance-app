@@ -4,8 +4,7 @@
       <el-header>
         <el-menu :router="true" :default-active="$route.path" class="el-menu-demo" mode="horizontal" >
           <el-menu-item index="1" :route="{name: 'Risk'}">Dashboard</el-menu-item>
-          <el-menu-item index="2">Response</el-menu-item>
-          <el-menu-item index="3" :route="{name:'CreateRisk'}">Build</el-menu-item>
+          <el-menu-item index="3" :route="{name:'CreateRisk'}">Build Form</el-menu-item>
         </el-menu>
       </el-header>
       <el-main>

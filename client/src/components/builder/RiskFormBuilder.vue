@@ -8,7 +8,7 @@
       </div>
 
       <div class="mb-3 float-right">
-          <el-button type="primary" size="small" icon="el-icon-plus" @click.prevent="handleAddField">Add Field</el-button>
+          <el-button type="primary" size="small" icon="el-icon-plus" @click.prevent="handleAddField">Add field</el-button>
       </div>
   </div>
 </template>
