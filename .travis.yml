@@ -1,7 +1,14 @@
 language: python
 script: echo 'all test are passing'
+
+install:
+    - nvm install 8
+    - pip install awscli
+
 after_success:
   - cd webapp
   - pip install zappa
   - pip install -r requirements.txt
   - zappa update dev
+  - cd ../client
+  - sh ./deploy-client.sh
