@@ -13,7 +13,9 @@ export function createRiskType (data) {
 export function getRiskType (riskId) {
   return http.get(`${URLS.TYPE}${riskId}/`)
 }
-
+export function updateRiskType (riskId, json) {
+  return http.put(`${URLS.TYPE + riskId}/`, json)
+}
 export function getRiskTypes (filter) {
   return http.get(`${URLS.TYPE}?filter=${filter}`)
 }

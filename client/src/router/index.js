@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Risk from '@/components/dashboard/Risk'
 import RiskForm from '@/components/view/RiskForm'
 import RiskFormBuilder from '@/components/builder/RiskFormBuilder'
-import CreateRisk from '@/components/builder/CreateRisk'
+import CreateRisk from '@/components/view/CreateRisk'
 import Login from '@/components/auth/Login'
 import Register from '@/components/auth/Register'
 import {isLoggedIn} from '@/services/auth'
@@ -32,6 +32,14 @@ const router = new Router({
     {
       path: '/add/',
       name: 'CreateRisk',
+      component: CreateRisk,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/edit/:id',
+      name: 'EditRisk',
       component: CreateRisk,
       meta: {
         auth: true

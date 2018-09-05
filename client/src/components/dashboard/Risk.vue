@@ -12,7 +12,7 @@
         <el-table-column
                                   prop="title"
                                   label="Title"
-                                  width="450">
+                                  width="400">
         </el-table-column>
         <el-table-column
                                   prop="description"
@@ -22,8 +22,9 @@
         <el-table-column
                                   fixed="right"
                                   label="Operations"
-                                  width="150">
+                                  width="200">
           <template slot-scope="scope">
+            <el-button @click="gotoEdit(scope.row)" type="text" size="small">Edit</el-button>
             <el-button @click="gotoPreview(scope.row)" type="text" size="small">Preview</el-button>
             <el-button @click="gotoBuilder(scope.row)" type="text" size="small">Customize</el-button>
           </template>
@@ -31,7 +32,7 @@
       </el-table>
     </div>
     <div v-else>
-      No Risk Item
+      <h1>You have not created any RISK FORM start building one now</h1>
     </div>
   </div>
 </template>
@@ -61,9 +62,10 @@ export default {
         this.riskItems = response.data
       })
     },
-
+    gotoEdit (item) {
+      this.$router.push({name: 'EditRisk', params: {id: item.id}})
+    },
     gotoPreview (item) {
-      console.log('@@Item ', item)
       this.$router.push({name: 'RiskForm', params: {riskId: item.id}})
     },
 
