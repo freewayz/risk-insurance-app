@@ -2,5 +2,6 @@ language: python
 script: echo 'all test are passing'
 after_success:
   - cd webapp
+  - pip install zappa
   - pip install -r requirements.txt
   - zappa update dev
