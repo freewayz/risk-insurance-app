@@ -28,6 +28,8 @@ class RegistrationSerializer(serializers.Serializer):
             first_name='',
             last_name=''
         )
+        user.set_password(data.get('password'))
+        user.save()
 
         Token.objects.get_or_create(user=user)
         return 'Created new account succesfully'
@@ -38,7 +40,6 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
     def validate(self, data):
-
         try:
             user = User.objects.get_by_natural_key(username=data.get('username'))
         except User.DoesNotExist:
@@ -46,7 +47,6 @@ class LoginSerializer(serializers.Serializer):
                 detail='User with this account not found'
             )
 
-        print(dir(user))
         if user.check_password(data.get('password')):
             return data
 

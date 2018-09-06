@@ -1,9 +1,13 @@
 language: python
+python:
+  - "3.6"
+
 script: echo 'all test are passing'
 
 install:
     - nvm install 8
     - pip install awscli
+    pythoh --version
 
 after_success:
   - cd webapp
