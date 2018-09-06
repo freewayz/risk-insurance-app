@@ -48,7 +48,7 @@ class RiskTypeAPITestCase(LoginMixin, APITestCase):
 
 
 
-class RiskTypeFormAPITestCase(APITestCase):
+class RiskTypeFormAPITestCase(LoginMixin, APITestCase):
     url = "/risk/form-fields/"
     data = {
         'label': 'Housing Number',
@@ -56,6 +56,7 @@ class RiskTypeFormAPITestCase(APITestCase):
     }
 
     def setUp(self):
+        super().setUp()
         # let mock a single risk type as our foreign key
         self.risktype = mock_risk_type()
 
@@ -65,6 +66,7 @@ class RiskTypeFormAPITestCase(APITestCase):
             path=self.url,
             data=self.data
         )
+
         self.assertEqual(response.status_code, 201)
 
     def test_that_risk_type_get_all_fields(self):
@@ -104,7 +106,7 @@ class RiskTypeFormAPITestCase(APITestCase):
         self.assertEqual(len(options), 3)
 
 
-class FormFieldTestCase(APITestCase):
+class FormFieldTestCase(LoginMixin, APITestCase):
     data = {
         'label': 'This is an option'
     }
