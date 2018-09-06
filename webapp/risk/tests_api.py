@@ -1,19 +1,36 @@
 """
     API Test cases for Risk
 """
-__autho__ = "peter"
-from rest_framework.test import APITestCase
+__author__ = "peter"
+from django.contrib.auth.models import User
+from rest_framework.test import APITestCase, APIClient
 from .models import ( RiskType, RiskFormField, FIELD_TYPES)
 from .utils_test import mock_risk_type, mock_risk_form_field
 from model_mommy import mommy
 import json
 
-class RiskTypeAPITestCase(APITestCase):
+USERNAME = 'test'
+PASSWORD = 'test'
+
+class LoginMixin():
+    def setUp(self):
+        user = mommy.make(User, **{
+            'username': USERNAME,
+            'password': PASSWORD
+        })
+        user.set_password(PASSWORD)
+        user.save()
+        self.client = APIClient()
+        self.client.login(username=USERNAME, password=PASSWORD)
+
+
+class RiskTypeAPITestCase(LoginMixin, APITestCase):
     url = "/risk/types/"
     data = {
         "title": "Housing Risk",
         "description": "My Housing Risk information"
     }
+
 
     def test_risktype_post(self):
         response = self.client.post(path=self.url, data=self.data)
@@ -21,7 +38,7 @@ class RiskTypeAPITestCase(APITestCase):
         self.assertContains(response, "Housing Risk", status_code=201)
 
     def test_get_all(self):
-        # create some risk types 
+        # create some risk types
         for i in range(3):
             self.data['title'] = '{}-{}'.format(i, self.data['title'])
             self.client.post(path=self.url, data=self.data)
@@ -57,7 +74,7 @@ class RiskTypeFormAPITestCase(APITestCase):
                 path=self.url,
                 data=self.data
             )
-    
+
         path = '/risk/types/{}/form_fields/'.format(self.risktype.pk)
         response = self.client.get(
             path=path
@@ -86,7 +103,7 @@ class RiskTypeFormAPITestCase(APITestCase):
         options = jsonData[0]['options']
         self.assertEqual(len(options), 3)
 
-    
+
 class FormFieldTestCase(APITestCase):
     data = {
         'label': 'This is an option'
@@ -103,4 +120,4 @@ class FormFieldTestCase(APITestCase):
         self.assertEqual(response.status_code, 201)
         self.assertContains(response, 'This is an option', status_code=201)
 
-   
+
