@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <el-form-item :label="field.label">
       <component :is="formComponent" :field="field"/>
-  </div>
+  </el-form-item>
 </template>
 
 <script>
-import Options from './widgets/Options'
-import TextInput from './widgets/TextInput'
+import Options from '../widgets/Options'
+import TextInput from '../widgets/TextInput'
+import DatePicker from '../widgets/Date'
 import {FIELD_TYPE} from '@/utils'
 
 export default {
@@ -19,7 +20,8 @@ export default {
   },
   components: {
     Options,
-    TextInput
+    TextInput,
+    DatePicker
   },
   mounted () {
     this.setupFormType()
@@ -29,8 +31,10 @@ export default {
       switch (this.field.field_type) {
         case FIELD_TYPE.TEXT:
         case FIELD_TYPE.NUMBER:
-        case FIELD_TYPE.DATE:
           this.formComponent = 'text-input'
+          break
+        case FIELD_TYPE.DATE:
+          this.formComponent = 'date-picker'
           break
         case FIELD_TYPE.OPTIONS:
           this.formComponent = 'options'

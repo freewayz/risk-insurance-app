@@ -1,35 +1,41 @@
 <template>
-  <div id="app" class="mx-auto">
-      <ul class="nav justify-content-center bg-light">
-        <li class="nav-item">
-          <a class="nav-link" href="https://britecore.com">BRITECORE</a>
-        </li>
-        <li class="nav-item">
-          <router-link  :to="{name: 'Risk'}" class="nav-link" >RISK</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link  :to="{name: 'CreateRisk'}" class="nav-link" >CREATE RISK</router-link>
-        </li>
-     </ul>
-    <div class="mt-4 container card brit-content">
-     <div class="justify-content-center">
-        <notifications  />       
-       <div class="p-3">
-        <router-view/>
-       </div>
-     </div>
-    </div>
+  <div id="app" class="app">
+    <el-container>
+      <el-header>
+        <el-menu :router="true" :default-active="$route.path" class="el-menu-demo" mode="horizontal" >
+          <el-menu-item index="1" :route="{name: 'Risk'}">Dashboard</el-menu-item>
+          <el-menu-item index="3" :route="{name:'CreateRisk'}">Build Form</el-menu-item>
+        </el-menu>
+      </el-header>
+      <el-main>
+          <router-view/>
+      </el-main>
+    </el-container>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      activeIndex: '1'
+    }
+  }
 }
 </script>
 
 <style scoped>
-  .brit-content {
-    width: 40% !important;
-  }
+.app {
+  width: 70%;
+  margin: auto;
+}
+.el-main {
+
+}
+.brit-content {
+  width: 40% !important;
+}
+
 </style>

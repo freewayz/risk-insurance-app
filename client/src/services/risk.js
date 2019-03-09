@@ -1,9 +1,9 @@
 import http from '@/utils/http'
 
 const URLS = {
-  TYPE: '/types/',
-  FIELDS: '/form-fields/',
-  FIELDS_OPITON: '/form-fields-options/'
+  TYPE: '/risk/types/',
+  FIELDS: '/risk/form-fields/',
+  FIELDS_OPITON: '/risk/form-fields-options/'
 }
 
 export function createRiskType (data) {
@@ -13,9 +13,11 @@ export function createRiskType (data) {
 export function getRiskType (riskId) {
   return http.get(`${URLS.TYPE}${riskId}/`)
 }
-
-export function getRiskTypes () {
-  return http.get(URLS.TYPE)
+export function updateRiskType (riskId, json) {
+  return http.put(`${URLS.TYPE + riskId}/`, json)
+}
+export function getRiskTypes (filter) {
+  return http.get(`${URLS.TYPE}?filter=${filter}`)
 }
 
 export function createRiskTypeFormField (data) {
@@ -37,4 +39,11 @@ export function createFormFieldOptions (data) {
 
 export function updateFormFieldOption (id, data) {
   return http.put(`${URLS.FIELDS_OPITON}${id}/`, data)
+}
+export function deleteFormFieldOption (id) {
+  return http.delete(`${URLS.FIELDS_OPITON}${id}/`)
+}
+
+export function deleteFormField (id) {
+  return http.delete(`${URLS.FIELDS}${id}/`)
 }

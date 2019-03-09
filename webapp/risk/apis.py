@@ -16,7 +16,15 @@ __autho__ = "peter"
 
 class RiskTypeAPI(viewsets.ModelViewSet):
     serializer_class  = RiskTypeSerializer
-    queryset = RiskType.objects.all()
+
+
+    def get_queryset(self):
+        "Return all risk either for the logged in user or all in the db"
+        query_filter = self.request.query_params.get('filter')
+        if query_filter == 'by_all':
+            return RiskType.objects.all()
+        return RiskType.objects.filter(owner=self.request.user)
+
 
     @detail_route(methods=['get'])
     def form_fields(self, request, pk):
@@ -24,10 +32,10 @@ class RiskTypeAPI(viewsets.ModelViewSet):
         form_fields = RiskFormField.objects.filter(risk_type=risk_type)
         serialized_data = RiskFormFieldSerializer(instance=form_fields, many=True)
         return Response(
-            data=serialized_data.data, 
+            data=serialized_data.data,
             status=HTTP_200_OK
         )
-    
+
 
 class FormFieldAPI(viewsets.ModelViewSet):
     serializer_class = RiskFormFieldSerializer
@@ -39,7 +47,7 @@ class FormFieldAPI(viewsets.ModelViewSet):
         field_options = RiskFormFieldOption.objects.filter(form_field=form_field)
         serialized_data = RiskFormFieldOptionSerializer(instance=form_fields, many=True)
         return Response(
-            data=serialized_data.data, 
+            data=serialized_data.data,
             status=HTTP_200_OK
         )
 

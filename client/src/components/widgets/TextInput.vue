@@ -1,16 +1,16 @@
 <template>
-    <div class="form-group">
-        <label for="">
-            {{ field.label }}
-        </label>
-        <input class="form-control" :type="inputType"/>
-    </div>
+  <el-input :type="inputType" v-model="userResponse"></el-input>
 </template>
 
 <script>
 export default {
   name: 'TextInput',
   props: ['field'],
+  data () {
+    return {
+      userResponse: ''
+    }
+  },
   computed: {
     inputType () {
       const fieldType = this.field.field_type
