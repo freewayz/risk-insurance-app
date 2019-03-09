@@ -1,5 +1,4 @@
-
-BRITECORE SAMPLE PROJECT
+INSURANCE RISK APP
 
 This is a simple implementation of what the britecore system does
 (Project URL )[http://britcore-peter.s3-website.us-east-2.amazonaws.com/]
